@@ -1,0 +1,97 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+  <ul class="nav nav-pills pull-right">
+  </ul>
+  <h3>Journey To The Moon</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div id="journey">
+                    <div id="celestialBodies">
+                        <div id="earth" class="flaticon-earth16"></div>
+                        <div id="moon" class="flaticon-moon13"></div>
+                    </div>
+                    <div id="trajectory"></div>
+                    <div id="progressLayer">
+                        <div id="rocketExhaust" ng-style="exhaustStyle"></div>
+                    </div>
+                    <div id="rocketPath">
+                        <span id="rocket" ng-style="rocketStyle" class="flaticon-rocket12 fa-rotate-90"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-switch on="state">
+        <div ng-switch-when="init">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            Download your Location History from <a href="https://www.google.com/takeout">google.com/takeout</a> and drag the JSON file into the box below.<br>
+                            All data will be analysed locally on your computer, nothing is uploaded to our server.<br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div id="file-drop" dropzone on-drop="fileDropped">
+                            <i class="flaticon-box2"></i> <b>Start your journey here</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-switch-when="loaded_file">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" id="getting_ready">
+                        <h3>Getting ready...</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-switch-default>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            Analyzing data... {{currentStat}} / {{totalStat}} ({{currentDate}})<br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div id="country_chart">
+                            <div google-geo-chart data="countryData" options="countryChartOptions"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div id="countries">
+                            <div google-table data="countryData" options="countryOptions"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div id="cities">
+                            <div google-table data="cityData" options="cityOptions"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
